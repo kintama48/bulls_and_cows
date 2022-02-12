@@ -82,7 +82,9 @@ def start_game():
     difficulty = input(BullsAndCows.get_console_msg())
     number_of_digits, number_of_guesses = BullsAndCows.get_digits_and_guesses(difficulty)
     game = BullsAndCows(number_of_digits)
-    print(f'\nTarget: {game.target}\n')
+
+    # print(f'\nTarget: {game.target}\n')
+    
     guess_board = "             -------------------------------------\n" \
                   "            | Turn |  Guess  |  Bulls  |   Cows   |\n" \
                   "             -------------------------------------\n"
