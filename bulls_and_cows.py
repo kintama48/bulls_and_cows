@@ -68,23 +68,25 @@ class BullsAndCows:
                 number_of_digits = 6
                 number_of_guesses = 7
                 return number_of_digits, number_of_guesses
+            elif difficulty == 'Q' or difficulty == 'q':
+                return False, False
             else:
                 difficulty = input("             --> Invalid difficulty. Please\n"
                                    "                 enter a NUMBER between\n"
-                                   "                 1 to 3 or enter 'Q'\n"
+                                   "                 1 and 3 or enter 'Q'\n"
                                    "                 to quit: ").rstrip().strip()
-                if difficulty == 'Q' or difficulty == 'q':
-                    return False, False
                 continue
 
 
 def start_game():
-    difficulty = input(BullsAndCows.get_console_msg())
+    difficulty = input(BullsAndCows.get_console_msg()).strip().rstrip()
+    if difficulty == 'q' or difficulty == 'Q':
+        return False
     number_of_digits, number_of_guesses = BullsAndCows.get_digits_and_guesses(difficulty)
     game = BullsAndCows(number_of_digits)
 
     # print(f'\nTarget: {game.target}\n')
-    
+
     guess_board = "             -------------------------------------\n" \
                   "            | Turn |  Guess  |  Bulls  |   Cows   |\n" \
                   "             -------------------------------------\n"
@@ -108,17 +110,17 @@ def start_game():
 
                 if play_again == 'Y' or play_again == 'y':
                     return True
-                elif play_again in 'nN' or play_again in 'qQ':
+                elif play_again == 'n' or play_again == 'N' or play_again == 'q' or play_again == 'Q':
                     return False
 
-                while play_again not in 'yYnNqQ':
+                while len(play_again) > 1 and play_again not in 'yYnNqQ':
                     play_again = input(f"\n             --> Please enter either 'Y', 'N', \n"
                                        f"                   or 'Q': \n").strip().rstrip()
 
             elif int(guess) < (int('9' * (number_of_digits - 1)) + 1) or int(guess) > int('9' * number_of_digits):
                 guess = input(f"             --> Please enter a number\n"
                               f"                 between {(int('9' * (number_of_digits - 1)) + 1)} "
-                              f"and {('9' * number_of_digits)}: ")
+                              f"and {('9' * number_of_digits)}: ").strip().rstrip()
                 continue
 
             tries -= 1
@@ -130,10 +132,12 @@ def start_game():
             continue
 
         except ValueError:
+            if guess == 'Q' or guess == 'q':
+                return False  # If 'Q' entered, print msg and exit the game
             guess = input(f"             --> Please enter a NUMBER \n"
                           f"                 between {number_of_digits} digits\n"
                           f"                 or enter 'Q'\n"
-                          f"                 to quit:  ")
+                          f"                 to quit:  ").strip().rstrip()
             continue
     else:
         play_again = input(f"\n             --> You ran out of tries :(\n\n"
@@ -145,5 +149,5 @@ def start_game():
 
         if play_again == 'Y' or play_again == 'y':
             return True
-        elif play_again in 'nN' or play_again in 'qQ':
+        elif play_again == 'n' or play_again == 'N' or play_again == 'q' or play_again == 'Q':
             return False
