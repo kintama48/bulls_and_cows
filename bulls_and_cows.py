@@ -107,7 +107,7 @@ def start_game():
 
     # maintaining a score board in a string variable will alleviate the need of using a for loop. new results are
     # concatenated in the string
-    guess_board = "             -------------------------------------\n" \ 
+    guess_board = "             -------------------------------------\n" \
                   "            | Turn |  Guess  |  Bulls  |   Cows   |\n" \
                   "             -------------------------------------\n"
 
@@ -135,8 +135,8 @@ def start_game():
                 print(guess_board)
 
                 # win msg and ask whether to start a new game
-                play_again = input(f"\n\n             --> Congratulations! You won.\n\n"    
-                                   f"             --> Would you like to start\n"            
+                play_again = input(f"\n\n             --> Congratulations! You won.\n\n"
+                                   f"             --> Would you like to start\n"
                                    f"                 a new game (Y or N)?: ").strip().rstrip()
 
                 if play_again == 'Y' or play_again == 'y':
