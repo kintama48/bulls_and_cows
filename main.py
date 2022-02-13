@@ -8,6 +8,7 @@
 
 from bulls_and_cows import *
 
+
 if __name__ == "__main__":
     play_again_flag = True
 
@@ -16,4 +17,5 @@ if __name__ == "__main__":
     while play_again_flag:
         play_again_flag = start_game()
 
-    BullsAndCows.print_exit_msg()   # when user quits then exit msg is printed to terminal
+    # when user quits then exit msg is printed to terminal
+    BullsAndCows.print_exit_msg()
