@@ -4,7 +4,7 @@
 
 """
 
-#   Please run this file to start the game
+###   Please run this file to start the game   ###
 
 from bulls_and_cows import *
 
