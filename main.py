@@ -8,11 +8,12 @@
 
 from bulls_and_cows import *
 
-
 if __name__ == "__main__":
     play_again_flag = True
 
+    # a loop which ends when user enters 'Q' or 'N'. start_game() function in bulls_and_cows.py returns false in that
+    # case and the loop ends otherwise true is returned and a new game starts
     while play_again_flag:
         play_again_flag = start_game()
 
-    BullsAndCows.print_exit_msg()
+    BullsAndCows.print_exit_msg()   # when user quits then exit msg is printed to terminal
