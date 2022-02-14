@@ -16,6 +16,15 @@ class BullsAndCows:
     def get_target(self):
         return self.target
 
+    # check if number is digit or not
+    @staticmethod
+    def is_digit(number):
+        try:
+            int(number)
+            return True
+        except ValueError:
+            return False
+
     # method to return bulls and cows present in the provided guess
     def get_bulls_and_cows(self, guess):
         bulls = 0
@@ -45,7 +54,9 @@ class BullsAndCows:
                "                 2. Medium\n" \
                "                 3. Hard\n" \
                "\n           ->  You can quit anytime by entering 'Q'\n\n" \
-               "                          Good luck!\n\n\n" \
+               "             -------------------------------------\n" \
+               "            |              Good luck!             |\n" \
+               "             -------------------------------------\n\n" \
                "             ->  Please enter the difficulty of \n" \
                "                 the game (1-3): " \
 
@@ -113,14 +124,23 @@ def start_game():
 
     # the number of tries the user will get according to the difficulty chosen
     tries = number_of_guesses
-    guess = input("\n             --> Please enter your guess: ").rstrip().strip()
 
     # loop ends when tries == 0
     while tries:
         try:
+            guess = input("\n             --> Please enter your guess: ").rstrip().strip()
+
             # If 'Q' entered, print msg and exit the game
             if guess == 'Q' or guess == 'q':
                 return False
+
+            # if user doesn't enter a number then program keeps asking for a valid input
+            if not game.is_digit(guess):
+                print(f"\n             -> Please enter a NUMBER \n"
+                      f"                  between {number_of_digits} digits\n"
+                      f"                  or enter 'Q'\n"
+                      f"                  to quit")
+                continue
 
             # if correct value guessed the end the game
             elif guess == game.get_target():
@@ -151,9 +171,8 @@ def start_game():
 
             # if guessed number out of range, ask for it again
             elif int(guess) < (int('9' * (number_of_digits - 1)) + 1) or int(guess) > int('9' * number_of_digits):
-                guess = input(f"             --> Please enter a number\n"
-                              f"                 between {(int('9' * (number_of_digits - 1)) + 1)} "
-                              f"and {('9' * number_of_digits)}: ").strip().rstrip()
+                print(f"\n             -> Please enter a number\n"
+                      f"                BETWEEN {(int('9' * (number_of_digits - 1)) + 1)} and {('9' * number_of_digits)}")
                 continue
 
             # if all of conditions fail then execute this code block which tells the user the bulls and cows in their
@@ -163,23 +182,15 @@ def start_game():
             guess_board += f"                {number_of_guesses - tries}  |  {guess}   |    {bulls}    |    {cows}  \n" \
                            "             -------------------------------------\n"
             print(guess_board)
-            guess = input("\n             --> Please enter your guess: ").rstrip().strip()
             continue
 
-        # if user doesn't enter a number then program keeps asking for a valid input
-        except ValueError:
+        except Exception:
+            print(Exception)
 
-            # If 'Q' entered, print msg and exit the game
-            if guess == 'Q' or guess == 'q':
-                return False
-            guess = input(f"             --> Please enter a NUMBER \n"
-                          f"                 between {number_of_digits} digits\n"
-                          f"                 or enter 'Q'\n"
-                          f"                 to quit:  ").strip().rstrip()
-            continue
 
     # if tries == 0 then that means user failed to guess the number so user is asked if they want to play again
     # then program exits
+    print(f"\n             --> The number was {game.get_target()}")
     play_again = input(f"\n             --> You lose. You ran out of tries :(\n\n"
                        f"             --> Would you like to start\n"
                        f"                 a new game (Y or N)?: ").strip().rstrip()
