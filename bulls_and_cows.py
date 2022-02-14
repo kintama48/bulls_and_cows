@@ -29,12 +29,16 @@ class BullsAndCows:
     def get_bulls_and_cows(self, guess):
         bulls = 0
         cows = 0
+        temp_target = list(self.target)
+
         for i in range(len(guess)):
-            if guess[i] == self.target[i]:
+            if len(temp_target) and guess[i] == self.target[i]:
                 bulls += 1
 
-            if guess[i] in self.target:
+            if len(temp_target) and guess[i] in self.target:
                 cows += 1
+
+            temp_target.remove(self.target[i])
 
         return bulls, cows - bulls
 
@@ -52,11 +56,11 @@ class BullsAndCows:
                "                 the difficulty.\n\n" \
                "                 1. Easy\n" \
                "                 2. Medium\n" \
-               "                 3. Hard\n\n" \
-               "             --> You can quit anytime by entering\n" \
-               "                 'Q'\n\n" \
+               "                 3. Hard\n" \
+               "\n           --> You can quit anytime by entering\n\n" \
+               "                 'Q'\n\n"\
                "             -------------------------------------\n" \
-               "            |             Good Luck!              |\n" \
+               "            |             Good luck!              |\n" \
                "             -------------------------------------\n\n" \
                "             ->  Please enter the difficulty of \n" \
                "                 the game (1-3): " \
@@ -115,7 +119,7 @@ def start_game():
     # initiate a BullsAndCows object and provide the no of digits to use
     game = BullsAndCows(number_of_digits)
 
-    # print(f'\nTarget: {game.target}\n')
+    print(f'\nTarget: {game.target}\n')
 
     # maintaining a score board in a string variable will alleviate the need of using a for loop. new results are
     # concatenated in the string
@@ -186,7 +190,8 @@ def start_game():
             continue
 
         except Exception:
-            print(Exception)
+            print(Exception.__name__)
+
 
     # if tries == 0 then that means user failed to guess the number so user is asked if they want to play again
     # then program exits
