@@ -28,23 +28,39 @@ class BullsAndCows:
     # method to return bulls and cows present in the provided guess
     def get_bulls_and_cows(self, guess):
         bulls = 0
-        cows = 0
+        total_bulls_cows = 0
 
         # the target is converted into an array to track how many digits in guess match the target.
         # after each iteration the parsed, digit is removed from this copy. this is necessary
         # to handle repeating digits in the guess and target
-        temp_target = list(self.target)
+        temp_target = list(guess)
 
-        for i in range(len(guess)):
-            if len(temp_target) and guess[i] == self.target[i]:
+        occurrences = {}
+
+        # initialize dictionary data structure with each target digit
+        for i in self.target:               # O(N)
+            # repeating digits are ignored
+            if i not in occurrences:
+                occurrences[i] = 0
+
+        # calculate the number of occurrences of each digit in guess
+        for i in guess:                     # O(N)
+            if i in occurrences and i in temp_target:
+                occurrences[i] += 1
+                temp_target.remove(i)
+
+        # calculate bulls
+        for i in range(len(guess)):         # O(N)
+            if guess[i] == self.target[i]:
                 bulls += 1
 
-            if len(temp_target) and guess[i] in self.target:
-                cows += 1
+        # now add all the occurrences to get the total number of bulls and cows
+        for key in occurrences:             # O(N)
+            total_bulls_cows += occurrences[key]
 
-            temp_target.remove(self.target[i])
-
-        return bulls, cows - bulls
+        # since cows has total number of bulls AND cows, we subtract bulls from cows
+        # to get the actual number of cows
+        return bulls, total_bulls_cows - bulls
 
     # welcome msg
     @staticmethod
@@ -61,8 +77,8 @@ class BullsAndCows:
                "                 1. Easy\n" \
                "                 2. Medium\n" \
                "                 3. Hard\n" \
-               "\n           --> You can quit anytime by entering\n\n" \
-               "                 'Q'\n\n"\
+               "\n           --> You can quit anytime by entering\n" \
+               "               'Q'\n\n"\
                "             -------------------------------------\n" \
                "            |             Good luck!              |\n" \
                "             -------------------------------------\n\n" \
@@ -99,7 +115,7 @@ class BullsAndCows:
         while True:
             if difficulty == "1":
                 number_of_digits = 4
-                number_of_guesses = 9
+                number_of_guesses = 7
                 return number_of_digits, number_of_guesses
             elif difficulty == "2":
                 number_of_digits = 5
@@ -107,7 +123,7 @@ class BullsAndCows:
                 return number_of_digits, number_of_guesses
             elif difficulty == "3":
                 number_of_digits = 6
-                number_of_guesses = 7
+                number_of_guesses = 9
                 return number_of_digits, number_of_guesses
 
             # exit if 'Q' or 'q' entered
@@ -133,7 +149,7 @@ def start_game():
     # initiate a BullsAndCows object and provide the no of digits to use
     game = BullsAndCows(number_of_digits)
 
-    # print(f'\nTarget: {game.target}\n')
+    print(f'\nTarget: {game.target}\n')
 
     # maintaining a score board in a string variable will alleviate the need of using a for loop. new results are
     # concatenated in the string
@@ -155,10 +171,11 @@ def start_game():
 
             # if user doesn't enter a number then program keeps asking for a valid input
             if not game.is_digit(guess):
-                print(f"\n             -> Please enter a NUMBER \n"
-                      f"                  between {number_of_digits} digits\n"
-                      f"                  or enter 'Q'\n"
-                      f"                  to quit")
+                print(f"\n"
+                      f"             -> Please enter a NUMBER\n"
+                      f"                between {number_of_digits} digits\n"
+                      f"                or enter 'Q'\n"
+                      f"                to quit")
                 continue
 
             # if correct value guessed the end the game
