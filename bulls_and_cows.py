@@ -54,7 +54,7 @@ class BullsAndCows:
                "                 2. Medium\n" \
                "                 3. Hard\n\n" \
                "             --> You can quit anytime by entering\n" \
-               "                 'Q'\n\n"\
+               "                 'Q'\n\n" \
                "             -------------------------------------\n" \
                "            |             Good luck!              |\n" \
                "             -------------------------------------\n\n" \
@@ -187,7 +187,6 @@ def start_game():
 
         except Exception:
             print(Exception)
-
 
     # if tries == 0 then that means user failed to guess the number so user is asked if they want to play again
     # then program exits
