@@ -29,6 +29,10 @@ class BullsAndCows:
     def get_bulls_and_cows(self, guess):
         bulls = 0
         cows = 0
+
+        # the target is converted into an array to track how many digits in guess match the target.
+        # after each iteration the parsed, digit is removed from this copy. this is necessary
+        # to handle repeating digits in the guess and target
         temp_target = list(self.target)
 
         for i in range(len(guess)):
@@ -185,7 +189,7 @@ def start_game():
                                        f"                   or 'Q': \n").strip().rstrip()
 
             # if guessed number out of range, ask for it again
-            elif int(guess) < (int('9' * (number_of_digits - 1)) + 1) or int(guess) > int('9' * number_of_digits):
+            elif len(guess) < number_of_digits or len(guess) > number_of_digits:
                 print(f"\n             -> Please enter a number\n"
                       f"                BETWEEN {(int('9' * (number_of_digits - 1)) + 1)} and {('9' * number_of_digits)}")
                 continue
@@ -199,8 +203,8 @@ def start_game():
             print(guess_board)
             continue
 
-        except Exception as err:
-            print(f"{type(err).__name__} exception occurred: {err}")
+        except Exception as exception:
+            print(f"{type(exception).__name__} exception occurred: {exception}")
 
     # if tries == 0 then that means user failed to guess the number so user is asked if they want to play again
     # then program exits
