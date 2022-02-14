@@ -52,10 +52,11 @@ class BullsAndCows:
                "                 the difficulty.\n\n" \
                "                 1. Easy\n" \
                "                 2. Medium\n" \
-               "                 3. Hard\n" \
-               "\n           ->  You can quit anytime by entering 'Q'\n\n" \
+               "                 3. Hard\n\n" \
+               "             --> You can quit anytime by entering\n" \
+               "                 'Q'\n\n"\
                "             -------------------------------------\n" \
-               "            |              Good luck!             |\n" \
+               "            |             Good luck!              |\n" \
                "             -------------------------------------\n\n" \
                "             ->  Please enter the difficulty of \n" \
                "                 the game (1-3): " \
