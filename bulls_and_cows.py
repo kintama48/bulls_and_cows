@@ -76,6 +76,16 @@ class BullsAndCows:
               "            |                                     |\n"
               "             -------------------------------------\n\n")
 
+    # win msg
+    @staticmethod
+    def print_win_msg():
+        print("\n\n"
+              "             -------------------------------------\n"
+              "            |                                     |\n"
+              "            |      Congratulations! You won!      |\n"
+              "            |                                     |\n"
+              "             -------------------------------------\n\n")
+
     # helper method to convert difficulty to number_of_digits and the guesses assosciated with each number_of_digits.
     # the values can be manipulated to add/remove new levels of difficulty to the game
     @staticmethod
@@ -160,8 +170,8 @@ def start_game():
                 print(guess_board)
 
                 # win msg and ask whether to start a new game
-                play_again = input(f"\n\n             --> Congratulations! You won.\n\n"
-                                   f"             --> Would you like to start\n"
+                game.print_win_msg()
+                play_again = input(f"\n            --> Would you like to start\n"
                                    f"                 a new game (Y or N)?: ").strip().rstrip()
 
                 if play_again == 'Y' or play_again == 'y':
@@ -189,9 +199,8 @@ def start_game():
             print(guess_board)
             continue
 
-        except Exception:
-            print(Exception.__name__)
-
+        except Exception as err:
+            print(f"{type(err).__name__} exception occurred: {err}")
 
     # if tries == 0 then that means user failed to guess the number so user is asked if they want to play again
     # then program exits
