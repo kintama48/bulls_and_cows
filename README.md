@@ -20,7 +20,8 @@ The next two checks are whether the guess is equivalent to the _target_. This wi
 This brings us to the last case where none of the checks passes and our _get_bulls_and_cows()_ function will be called which will run a single for loop and iterate over the input digits and calculate the number of bulls and cows. This for loop will be of _‘N’_ time complexity where _‘N’_ is the _number_of_digits_ our game is checking for; _number_of_digits_ can vary and can be given any value to increase the difficulty of the game.
 
 ```
-N will dominate the constant time complexity of each iteration of our ‘tries while loop', therefore the time complexity will be O(N)
+N will dominate the constant time complexity of each iteration of our ‘tries while loop',
+therefore the time complexity will be O(N)
 ```
 Lastly, our _‘try while loop’_ can iterate for an infinite number of times given incorrect user input in the worst-case scenario; we will not be considering this case. What we will consider is the user will input the correct input on each iteration and in a worst-case scenario, no input for all tries matches the target digits of the game in this case our while loop runs a total of _“T”_ times, where “T” is the number of tries which is calculated using the selected difficulty of the game; _‘number of tries’_ can also be modified to increase/decrease the difficulty of our game.
 
