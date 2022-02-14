@@ -8,7 +8,6 @@
 
 from bulls_and_cows import *
 
-
 if __name__ == "__main__":
     play_again_flag = True
 

@@ -56,7 +56,7 @@ class BullsAndCows:
                "             --> You can quit anytime by entering\n" \
                "                 'Q'\n\n" \
                "             -------------------------------------\n" \
-               "            |             Good luck!              |\n" \
+               "            |             Good Luck!              |\n" \
                "             -------------------------------------\n\n" \
                "             ->  Please enter the difficulty of \n" \
                "                 the game (1-3): " \
