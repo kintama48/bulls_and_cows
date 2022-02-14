@@ -149,7 +149,7 @@ def start_game():
     # initiate a BullsAndCows object and provide the no of digits to use
     game = BullsAndCows(number_of_digits)
 
-    print(f'\nTarget: {game.target}\n')
+    # print(f'\nTarget: {game.target}\n')
 
     # maintaining a score board in a string variable will alleviate the need of using a for loop. new results are
     # concatenated in the string
